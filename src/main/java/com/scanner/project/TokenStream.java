@@ -60,12 +60,13 @@ public class TokenStream {
 				// skip rest of line - it's a comment.
 				// look for <cr>, <lf>, <ff>
 				// TODO TO BE COMPLETED
-				//while (nextChar != 'n' && nextChar != 'r' && nextChar != 'f' && !isEof) {
-					//nextChar = readChar();
-				//}
-				//nextChar = readChar(); // Read next char after end of line
-				//skipWhiteSpace();
-				nextToken();
+				while (!isEndOfLine(nextChar) && !isEof) {
+					nextChar = readChar();
+				}
+
+				if (isEndOfLine(nextChar)) {
+					skipWhiteSpace();
+				}
 			
 			} else {
 				// A slash followed by anything else must be an operator.
